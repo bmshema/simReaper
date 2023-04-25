@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -31,5 +32,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Reads modem Responses
+	buffer := make([]byte, 128)
+	n, err := port.Read(buffer)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Print Response
+	response := string(buffer[:n])
+	fmt.Println(response)
 
 }
