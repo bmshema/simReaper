@@ -30,11 +30,20 @@ func CallClear() {
 }
 
 // Removes spaces, tabs, newlines and AT echo from responses
-func CleanResponse(s string) string {
+func CleanImsi(s string) string {
 	s = strings.Replace(s, "OK", "", -1)
 	s = strings.Replace(s, "\t", "", -1)
 	s = strings.Replace(s, "\r", "", -1)
 	s = strings.Replace(s, "\n", "", -1)
 	s = strings.Replace(s, "AT+CIMI", "", -1)
+	return s
+}
+
+func CleanIccid(s string) string {
+	s = strings.Replace(s, "OK", "", -1)
+	s = strings.Replace(s, "\t", "", -1)
+	s = strings.Replace(s, "\r", "", -1)
+	s = strings.Replace(s, "\n", "", -1)
+	s = strings.Replace(s, "+ICCID:", "", -1)
 	return s
 }
