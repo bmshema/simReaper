@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/tarm/serial"
@@ -42,6 +43,14 @@ func main() {
 
 	// Print Response
 	response := string(buffer[:n])
-	fmt.Println(response)
+	fmt.Println(cleanUp(string(colorBlack), response))
 
+}
+
+// Removes spaces, tabs, newlines and AT echo from output
+func cleanUp(s string) string {
+	s = strings.Replace(s, "*AT*", "", -1)
+	s = strings.Replace(s, "\t", "", -1)
+	s = strings.Replace(s, "\n", "", -1)
+	return string(s)
 }
