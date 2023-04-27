@@ -53,5 +53,17 @@ func CleanContacts(s string) string {
 	s = strings.Replace(s, "\t", "", -1)
 	s = strings.Replace(s, "\r", "", -1)
 	s = strings.Replace(s, "+CPBR: ", "", -1)
+	s = strings.Replace(s, "\"", "", -1)
+	s = strings.Replace(s, ",", "  ", -1)
+	s = strings.Replace(s, "129", "", -1)
+	s = strings.Replace(s, " 0", "", -1)
+	return s
+}
+
+func CleanMsisdn(s string) string {
+	s = strings.Replace(s, "\"", "", -1)
+	s = strings.Replace(s, ",", "", -1)
+	s = strings.Replace(s, "129", "", -1)
+	s = strings.Replace(s, "+CNUM: ", "", -1)
 	return s
 }
