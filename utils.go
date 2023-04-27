@@ -47,3 +47,11 @@ func CleanIccid(s string) string {
 	s = strings.Replace(s, "+ICCID:", "", -1)
 	return s
 }
+
+func CleanContacts(s string) string {
+	s = strings.Replace(s, "OK", "", -1)
+	s = strings.Replace(s, "\t", "", -1)
+	s = strings.Replace(s, "\r", "", -1)
+	s = strings.Replace(s, "+CPBR: ", "", -1)
+	return s
+}
