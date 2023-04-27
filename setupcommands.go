@@ -46,5 +46,15 @@ func StartCommands() {
 
 	time.Sleep(100 * time.Millisecond)
 
+	// Changes storage mode to SM
+	sm := "AT+CPBS=\"SM\"\r\n"
+	_, err = port.Write([]byte(sm))
+	if err != nil {
+		fmt.Println("Cannot connect with device...")
+		log.Fatal(err)
+	}
+
+	time.Sleep(100 * time.Millisecond)
+
 	port.Flush()
 }
