@@ -8,7 +8,7 @@ import (
 	"github.com/tarm/serial"
 )
 
-func IccidCommand() string {
+func GetIccid() string {
 	config := &serial.Config{
 		Name:        "/dev/ttyUSB2",
 		Baud:        115200,
