@@ -8,7 +8,7 @@ import (
 	"github.com/tarm/serial"
 )
 
-func ImsiCommand() string {
+func GetImsi() string {
 	config := &serial.Config{
 		Name:        "/dev/ttyUSB2",
 		Baud:        115200,
