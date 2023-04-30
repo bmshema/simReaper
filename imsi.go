@@ -26,7 +26,7 @@ func GetImsi() string {
 	}
 	defer port.Close()
 
-	// Write AT commands to the modem
+	// Write IMSI AT command
 	imsi := "AT+CIMI\r\n"
 	_, err = port.Write([]byte(imsi))
 	if err != nil {
