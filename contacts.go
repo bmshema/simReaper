@@ -26,6 +26,16 @@ func GetContacts() string {
 	}
 	defer port.Close()
 
+	// Changes storage mode to SM
+	sm := "AT+CPBS=\"SM\"\r\n"
+	_, err = port.Write([]byte(sm))
+	if err != nil {
+		fmt.Println("Cannot connect with device...")
+		log.Fatal(err)
+	}
+
+	time.Sleep(100 * time.Millisecond)
+
 	// Reads all entries in SM
 	rd := "AT+CPBR=1,250\r\n"
 	_, err = port.Write([]byte(rd))
@@ -33,6 +43,8 @@ func GetContacts() string {
 		fmt.Println("Cannot connect with device...")
 		log.Fatal(err)
 	}
+
+	port.Flush()
 
 	// Reads modem Responses
 	buffer := make([]byte, 256)
