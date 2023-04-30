@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	CallClear()
 	StartCommands()
 	fmt.Printf("\nIdentifiers:\n\n")
 	fmt.Printf("Type    Value\n")
