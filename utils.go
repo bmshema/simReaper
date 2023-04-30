@@ -61,3 +61,9 @@ func CleanMsisdn(s string) string {
 	s = replacer.Replace(s)
 	return s
 }
+
+func CleanApn(s string) string {
+	replacer := strings.NewReplacer("OK", "", "\t", "", "\r", "")
+	s = replacer.Replace(s)
+	return s
+}

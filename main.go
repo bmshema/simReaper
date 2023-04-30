@@ -15,11 +15,11 @@ func main() {
 	fmt.Printf("ICCID: %v\n", CleanIccid(GetIccid()))
 	fmt.Printf("MSISDN: %v\n", CleanMsisdn(GetMsisdn()))
 	fmt.Println("-------------------------------------------------")
-	fmt.Printf("\nContacts:\n\n")
+	fmt.Printf("\n\nContacts:\n\n")
 	fmt.Printf("#  Number        Name\n")
 	fmt.Println("-------------------------------------------------")
 	fmt.Println(CleanContacts(GetContacts()))
 	fmt.Println("-------------------------------------------------")
 	fmt.Printf("\nAPN Settings: \n")
-	fmt.Println(GetApn())
+	fmt.Println(CleanApn(GetApn()))
 }
