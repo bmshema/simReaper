@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"runtime"
@@ -31,7 +30,7 @@ func CallClear() {
 }
 
 func Banner() string {
-	b, err := ioutil.ReadFile("banner.txt")
+	b, err := os.ReadFile("banner.txt")
 	if err != nil {
 		panic(err)
 	}
