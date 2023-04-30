@@ -66,7 +66,4 @@ func GetSms() string {
 		port.Flush()
 		return sms
 	}
-
-	port.Flush()
-	return sms
 }
