@@ -31,39 +31,25 @@ func CallClear() {
 
 // Removes spaces, tabs, newlines and AT echo from responses
 func CleanImsi(s string) string {
-	s = strings.Replace(s, "OK", "", -1)
-	s = strings.Replace(s, "\t", "", -1)
-	s = strings.Replace(s, "\r", "", -1)
-	s = strings.Replace(s, "\n", "", -1)
-	s = strings.Replace(s, "AT+CIMI", "", -1)
+	replacer := strings.NewReplacer("OK", "", "\t", "", "\r", "", "\n", "", "AT+CIMI", "")
+	s = replacer.Replace(s)
 	return s
 }
 
 func CleanIccid(s string) string {
-	s = strings.Replace(s, "OK", "", -1)
-	s = strings.Replace(s, "\t", "", -1)
-	s = strings.Replace(s, "\r", "", -1)
-	s = strings.Replace(s, "\n", "", -1)
-	s = strings.Replace(s, "+ICCID:", "", -1)
+	replacer := strings.NewReplacer("OK", "", "\t", "", "\r", "", "\n", "", "+ICCID:", "")
+	s = replacer.Replace(s)
 	return s
 }
 
 func CleanContacts(s string) string {
-	s = strings.Replace(s, "OK", "", -1)
-	s = strings.Replace(s, "\t", "", -1)
-	s = strings.Replace(s, "\r", "", -1)
-	s = strings.Replace(s, "+CPBR: ", "", -1)
-	s = strings.Replace(s, "\"", "", -1)
-	s = strings.Replace(s, ",", "  ", -1)
-	s = strings.Replace(s, "129", "", -1)
-	s = strings.Replace(s, " 0", "", -1)
+	replacer := strings.NewReplacer("OK", "", "\t", "", "\r", "", "+CPBR: ", "", "\"", "", ",", "  ", "129", "", "0", "")
+	s = replacer.Replace(s)
 	return s
 }
 
 func CleanMsisdn(s string) string {
-	s = strings.Replace(s, "\"", "", -1)
-	s = strings.Replace(s, ",", "", -1)
-	s = strings.Replace(s, "129", "", -1)
-	s = strings.Replace(s, "+CNUM: ", "", -1)
+	replacer := strings.NewReplacer("\"", "", ",", "", "129", "", "+CNUM: ", "")
+	s = replacer.Replace(s)
 	return s
 }
