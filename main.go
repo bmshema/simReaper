@@ -20,6 +20,9 @@ func main() {
 	fmt.Println("-------------------------------------------------")
 	fmt.Println(CleanContacts(GetContacts()))
 	fmt.Println("-------------------------------------------------")
+	fmt.Printf("\nStored SMS Messages: \n")
+	fmt.Println(GetSms())
+	fmt.Println("-------------------------------------------------")
 	fmt.Printf("\nAPN Settings: \n")
 	fmt.Println(CleanApn(GetApn()))
 }
