@@ -43,11 +43,9 @@ func GetMsisdn() string {
 	}
 
 	// Print Response
+	replacer := strings.NewReplacer("\t", "", "\r", "", "\n", "", "OK", "")
 	msisdnResponse := string(buffer[:n])
-	msisdnResponse = strings.Replace(msisdnResponse, "\t", "", -1)
-	msisdnResponse = strings.Replace(msisdnResponse, "\r", "", -1)
-	msisdnResponse = strings.Replace(msisdnResponse, "\n", "", -1)
-	msisdnResponse = strings.Replace(msisdnResponse, "OK", "", -1)
+	msisdnResponse = replacer.Replace(msisdnResponse)
 
 	if strings.HasPrefix(msisdnResponse, "+CNUM:") {
 		port.Flush()
