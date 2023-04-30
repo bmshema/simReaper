@@ -20,4 +20,6 @@ func main() {
 	fmt.Println("---------------------------")
 	fmt.Println(CleanContacts(GetContacts()))
 	fmt.Println("---------------------------")
+	fmt.Printf("\nAPN Settings: \n")
+	fmt.Println(GetApn())
 }
