@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"runtime"
@@ -27,6 +28,14 @@ func CallClear() {
 	} else {
 		panic("Unsupported platform. I can't clear your terminal screen :(")
 	}
+}
+
+func Banner() string {
+	b, err := ioutil.ReadFile("banner.txt")
+	if err != nil {
+		panic(err)
+	}
+	return string(b)
 }
 
 // Removes spaces, tabs, newlines and AT echo from responses
