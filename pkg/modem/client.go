@@ -3,6 +3,7 @@ package modem
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/tarm/serial"
@@ -89,17 +90,37 @@ func (c *ModemClient) SendCommand(cmd string) (string, error) {
 		return "", fmt.Errorf("failed to send command: %w", err)
 	}
 
-	// Read response
+	// Read response with a more robust approach
+	var response strings.Builder
 	buffer := make([]byte, 256)
-	n, err := c.port.Read(buffer)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response: %w", err)
+
+	// Wait for complete response
+	time.Sleep(300 * time.Millisecond)
+
+	// Read in chunks until timeout or buffer is empty
+	for {
+		n, err := c.port.Read(buffer)
+		if err != nil {
+			// Timeout or EOF is normal at the end of the response
+			break
+		}
+		if n == 0 {
+			break
+		}
+		response.Write(buffer[:n])
+
+		// Check if response is complete (ends with OK or ERROR)
+		if strings.Contains(response.String(), "OK\r\n") ||
+			strings.Contains(response.String(), "ERROR\r\n") {
+			break
+		}
+
+		// Short pause between reads
+		time.Sleep(50 * time.Millisecond)
 	}
 
-	// Return response
-	response := string(buffer[:n])
 	c.port.Flush()
-	return response, nil
+	return response.String(), nil
 }
 
 // InitializeModem sets up the modem with basic configuration
